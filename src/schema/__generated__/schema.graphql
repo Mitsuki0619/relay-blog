@@ -1,0 +1,9 @@
+type Pokemon {
+  name: String!
+  number: String!
+}
+
+type Query {
+  pokemons(first: Int!): [Pokemon!]!
+  findPokemon(name: String!): Pokemon!
+}
