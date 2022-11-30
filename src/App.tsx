@@ -27,8 +27,7 @@ function App() {
     <div>
       <Suspense fallback={"Loading..."}>
         <PokemonList
-          PokemonListQuery={PokemonListQuery}
-          preloadedQuery={pokemonListQueryRef}
+          initialQueryRef={pokemonListQueryRef}
         />
       </Suspense>
     </div>

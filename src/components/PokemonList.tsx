@@ -1,10 +1,15 @@
+import { AppPokemonListQuery } from "queries/__generated__/AppPokemonListQuery.graphql";
 import React from "react";
-import { graphql, GraphQLTaggedNode, usePreloadedQuery } from "react-relay";
+import {
+  graphql,
+  GraphQLTaggedNode,
+  PreloadedQuery,
+  usePreloadedQuery,
+} from "react-relay";
 
 export const PokemonList: React.FC<{
-  PokemonListQuery: GraphQLTaggedNode;
-  preloadedQuery: any;
-}> = ({ PokemonListQuery, preloadedQuery }) => {
+  initialQueryRef: PreloadedQuery<AppPokemonListQuery>;
+}> = ({ initialQueryRef }) => {
   const data = usePreloadedQuery(
     graphql`
       query PokemonListNameQuery($first: Int!) {
@@ -13,11 +18,10 @@ export const PokemonList: React.FC<{
         }
       }
     `,
-    preloadedQuery
+    initialQueryRef
   );
 
   console.log(data);
-  
 
   return <div>PokemonList</div>;
 };
