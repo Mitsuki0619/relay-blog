@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<80aa8fa5d09949d6ddcf1d8af1edbd7f>>
+ * @generated SignedSource<<7b0f413e320137e3ce641c4ddfc8e533>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,9 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type AppPokemonListQuery$variables = {};
+export type AppPokemonListQuery$variables = {
+  first: number;
+};
 export type AppPokemonListQuery$data = {
   readonly pokemons: ReadonlyArray<{
     readonly name: string;
@@ -24,12 +26,19 @@ export type AppPokemonListQuery = {
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "first"
+  }
+],
+v1 = [
+  {
     "alias": null,
     "args": [
       {
-        "kind": "Literal",
+        "kind": "Variable",
         "name": "first",
-        "value": 10
+        "variableName": "first"
       }
     ],
     "concreteType": "Pokemon",
@@ -52,37 +61,37 @@ var v0 = [
         "storageKey": null
       }
     ],
-    "storageKey": "pokemons(first:10)"
+    "storageKey": null
   }
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "AppPokemonListQuery",
-    "selections": (v0/*: any*/),
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "AppPokemonListQuery",
-    "selections": (v0/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "e32d0b542cbacef50e203a2fcb4de197",
+    "cacheID": "5409dfacddb0ca8936164ab3c420ca51",
     "id": null,
     "metadata": {},
     "name": "AppPokemonListQuery",
     "operationKind": "query",
-    "text": "query AppPokemonListQuery {\n  pokemons(first: 10) {\n    name\n    number\n  }\n}\n"
+    "text": "query AppPokemonListQuery(\n  $first: Int!\n) {\n  pokemons(first: $first) {\n    name\n    number\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "941e18c68952c1c39dfaacddff86d56d";
+(node as any).hash = "158beffcd5a8fe748d4900c3136d8d68";
 
 export default node;

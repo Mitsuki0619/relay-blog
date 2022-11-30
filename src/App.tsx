@@ -1,29 +1,34 @@
+import { AppPokemonListQuery } from "queries/__generated__/AppPokemonListQuery.graphql";
 import { Suspense } from "react";
 import { graphql, GraphQLTaggedNode, loadQuery } from "react-relay";
 import { PokemonList } from "./components/PokemonList";
 import RelayEnvironment from "./RelayEnvironment";
 
 const PokemonListQuery: GraphQLTaggedNode = graphql`
-  query AppPokemonListQuery {
-    pokemons(first: 10) {
-      name,
+  query AppPokemonListQuery($first: Int!) {
+    pokemons(first: $first) {
+      name
       number
     }
   }
 `;
 
 function App() {
-  const preloadedQuery = loadQuery(RelayEnvironment, PokemonListQuery, {
-    // variables
-    // first: 10,
-  });
+  const pokemonListQueryRef = loadQuery<AppPokemonListQuery>(
+    RelayEnvironment,
+    PokemonListQuery,
+    {
+      // variables
+      first: 151,
+    }
+  );
 
   return (
     <div>
       <Suspense fallback={"Loading..."}>
         <PokemonList
           PokemonListQuery={PokemonListQuery}
-          preloadedQuery={preloadedQuery}
+          preloadedQuery={pokemonListQueryRef}
         />
       </Suspense>
     </div>
